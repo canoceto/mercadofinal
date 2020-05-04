@@ -1,0 +1,5 @@
+<mat-toolbar color="primary">
+  <span>Mercado</span>
+  <button mat-button (click)="loginLogout()">{{isLoggedIn()?'Log out':'Login'}}</button>
+  <span *ngIf="isLoggedIn()">{{getUser().displayName}}</span>
+</mat-toolbar>
