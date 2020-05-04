@@ -1,6 +1,19 @@
 <mat-toolbar color="primary">
   <span>Mercado</span>
   <span style="flex: 1 1 auto;"></span>
-  <button mat-button (click)="loginLogout()">{{isLoggedIn()?'Log out':'Login'}}</button>
-  <span *ngIf="isLoggedIn()">{{getUser().displayName}}</span>
+  <span style="font-size: 12px; margin-right: 4px;">{{
+    getUser() ? getUser().displayName : "Not logged"
+  }}</span>
+  <img
+    [matMenuTriggerFor]="menu"
+    [src]="getUserPhoto()"
+    style="border-radius: 50%; background-color: #444; cursor: pointer;"
+    width="28"
+    height="28"
+  />
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="loginLogout()">
+      {{ isLoggedIn() ? "Log out" : "Login" }}
+    </button>
+  </mat-menu>
 </mat-toolbar>

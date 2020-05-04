@@ -28,4 +28,8 @@ export class ToolbarComponent {
   getUser(): User{
     return this.auth.user;
   }
+
+  getUserPhoto(): string{
+    return this.getUser() ? this.getUser().photoURL : "https://www.materialui.co/materialIcons/social/person_outline_white_192x192.png";
+  }
 }
