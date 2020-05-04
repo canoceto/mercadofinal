@@ -1,9 +1,7 @@
 <mat-toolbar color="primary">
   <span>Mercado</span>
   <span style="flex: 1 1 auto;"></span>
-  <span style="font-size: 12px; margin-right: 4px;">{{
-    getUser() ? getUser().displayName : "Not logged"
-  }}</span>
+  <span style="font-size: 12px; margin-right: 4px;">{{getUserName()}}</span>
   <img
     [matMenuTriggerFor]="menu"
     [src]="getUserPhoto()"
