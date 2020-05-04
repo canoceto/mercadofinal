@@ -1,5 +1,5 @@
-<mat-grid-list [cols]="colCount" rowHeight="250px">
-  <mat-grid-tile *ngFor="let card of cards">
-    <app-product-card style="width: 100%; padding: 2px;"></app-product-card>
+<mat-grid-list [cols]="colCount" rowHeight="300px">
+  <mat-grid-tile *ngFor="let product of products">
+    <app-product-card [product]="product" style="width: 100%; padding: 2px;"></app-product-card>
   </mat-grid-tile>
 </mat-grid-list>
