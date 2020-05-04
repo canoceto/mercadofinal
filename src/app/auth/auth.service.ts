@@ -20,6 +20,20 @@ export class AuthService {
     });
   }
 
+  async login(email: string, password: string) {
+    await this.fireAuth.signInWithEmailAndPassword(
+      email,
+      password
+    );
+  }
+
+  async register(email: string, password: string) {
+    await this.fireAuth.createUserWithEmailAndPassword(
+      email,
+      password
+    );
+  }
+
   async loginWithGoogle() {
     await this.fireAuth.signInWithPopup(new auth.GoogleAuthProvider());
   }
