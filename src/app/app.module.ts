@@ -21,6 +21,7 @@ import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './home/home/home.component';
 import { ProductPageComponent } from './product/product-page/product-page.component';
 import { ProductCardComponent } from './product/product-card/product-card.component';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { ProductCardComponent } from './product/product-card/product-card.compon
     ToolbarComponent,
     HomeComponent,
     ProductPageComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    LoginDialogComponent
   ],
   imports: [
     BrowserModule,
