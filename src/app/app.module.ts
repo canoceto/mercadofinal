@@ -16,12 +16,14 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './home/home/home.component';
+import { ProductPageComponent } from './product/product-page/product-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ToolbarComponent,
-    HomeComponent
+    HomeComponent,
+    ProductPageComponent
   ],
   imports: [
     BrowserModule,
