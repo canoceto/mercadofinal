@@ -32,8 +32,10 @@ export class ProductPageComponent implements OnInit {
           name: (e.payload.doc.data() as any).name,
           description: (e.payload.doc.data() as any).description,
           price: (e.payload.doc.data() as any).price,
-          owner: this.authService.user.uid
+          owner: (e.payload.doc.data() as any).owner
         } as Product;
+      }).filter((temp) => {
+        return (this.authService.user != null && this.authService.user.uid === temp.owner);
       });
     });
     this.dataSource = new MatTableDataSource<Product>(this.products);
