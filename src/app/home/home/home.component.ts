@@ -19,37 +19,37 @@ export class HomeComponent implements OnInit {
       id: '2',
       name: 'Apple',
       description: 'Description',
-      price: 500,
+      price: 50,
       owner: ''
     }, {
       id: '3',
       name: 'Apple',
       description: 'Description',
-      price: 500,
+      price: 50,
       owner: ''
     }, {
       id: '4',
       name: 'Apple',
       description: 'Description',
-      price: 500,
+      price: 50,
       owner: ''
     }, {
       id: '5',
       name: 'Apple',
       description: 'Description',
-      price: 500,
+      price: 50,
       owner: ''
     }, {
       id: '6',
       name: 'Apple',
       description: 'Description',
-      price: 500,
+      price: 50,
       owner: ''
     }, {
       id: '7',
       name: 'Apple',
       description: 'Description',
-      price: 500,
+      price: 50,
       owner: ''
     },
   ];
