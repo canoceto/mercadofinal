@@ -81,7 +81,7 @@ import { LoginDialogComponent } from './login-dialog/login-dialog.component';
     MatDialogModule,
     MatInputModule
   ],
-  providers: [ProductsService],
+  providers: [],
   entryComponents: [LoginDialogComponent],
   bootstrap: [AppComponent]
 })
