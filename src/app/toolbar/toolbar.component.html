@@ -1,9 +1,9 @@
 <mat-toolbar color="primary">
-  <span>Mercado</span>
+  <span routerLink="/product">Mercado</span>
   <span style="flex: 1 1 auto;"></span>
   <span style="font-size: 12px; margin-right: 4px;">{{
     getUser() ? getUser().displayName : "Not logged"
-  }}</span>
+    }}</span>
   <img
     [matMenuTriggerFor]="menu"
     [src]="getUserPhoto()"

@@ -4,6 +4,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {Product} from '../../model/product';
 import {AuthService} from '../../auth/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-product-page',
@@ -15,7 +16,10 @@ export class ProductPageComponent implements OnInit {
   displayedColumns: string[] = ['name', 'price', 'description', 'action'];
   dataSource: MatTableDataSource<Product>;
 
-  constructor(public service: ProductsService, private authService: AuthService) {
+  constructor(private router: Router, public service: ProductsService, private authService: AuthService) {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/home']);
+    }
   }
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
