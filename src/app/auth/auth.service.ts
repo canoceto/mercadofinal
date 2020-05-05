@@ -20,8 +20,9 @@ export class AuthService {
     });
   }
 
-  async login(email: string, password: string) {
-    await this.fireAuth.signInWithEmailAndPassword(
+  login(email: string, password: string): Promise<any> {
+    console.log('pepe');
+    return this.fireAuth.signInWithEmailAndPassword(
       email,
       password
     );
@@ -34,8 +35,8 @@ export class AuthService {
     );
   }
 
-  async loginWithGoogle() {
-    await this.fireAuth.signInWithPopup(new auth.GoogleAuthProvider());
+  loginWithGoogle(): Promise<any> {
+    return this.fireAuth.signInWithPopup(new auth.GoogleAuthProvider());
   }
 
   isLoggedIn(): boolean {

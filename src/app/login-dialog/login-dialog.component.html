@@ -1,1 +1,30 @@
-<p>login-dialog works!</p>
+<h1 mat-dialog-title>{{ registerMode ? "Create account" : "Login" }}</h1>
+<div mat-dialog-content>
+  <mat-form-field style="width: 100%;">
+    <mat-label>E-Mail</mat-label>
+    <input type=email matInput [(ngModel)]="email" required/>
+  </mat-form-field>
+  <mat-form-field style="width: 100%">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput [(ngModel)]="password" required/>
+  </mat-form-field>
+  <mat-form-field *ngIf="registerMode" style="width: 100%">
+    <mat-label>Repeat Password</mat-label>
+    <input type="password" matInput [(ngModel)]="repeatedPassword" required/>
+  </mat-form-field>
+</div>
+<p *ngIf="!registerMode">Or</p>
+<p *ngIf="!registerMode" (click)="loginWithGoogle()" style="cursor: pointer; color:#3f51b5; text-decoration: underline">
+  Login with Google
+</p>
+<p (click)="switchModes()" style="cursor: pointer; color: #3f51b5;text-decoration: underline">
+  {{
+    registerMode
+      ? "Already have an account."
+      : "You don't have an account? Register."
+  }}
+</p>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button cdkFocusInitial (click)="login()">Ok</button>
+</div>
