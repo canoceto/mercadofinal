@@ -3,6 +3,7 @@ import {auth} from 'firebase/app';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {User} from 'firebase';
 import {AngularFirestore} from '@angular/fire/firestore';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ import {AngularFirestore} from '@angular/fire/firestore';
 export class AuthService {
   user: User;
 
-  constructor(public fireAuth: AngularFireAuth, private firebase: AngularFirestore) {
+  constructor(public fireAuth: AngularFireAuth, private firebase: AngularFirestore, private router: Router) {
     this.fireAuth.authState.subscribe((user) => {
       if (user) {
         this.user = user;
@@ -54,5 +55,6 @@ export class AuthService {
   async logout() {
     await this.fireAuth.signOut();
     localStorage.removeItem('user');
+    this.router.navigate(['home']);
   }
 }
