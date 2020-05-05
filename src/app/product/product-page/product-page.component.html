@@ -1,1 +1,61 @@
-<p>product-page works!</p>
+<div class="container">
+  <form [formGroup]="service.form" (submit)="onSubmit()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> Add product</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field>
+          <input formControlName="name" #input matInput placeholder="Name" value="">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="price" #input matInput placeholder="Price" value="">
+        </mat-form-field>
+        <mat-form-field>
+          <input formControlName="description" #input matInput placeholder="Short Description" value="">
+        </mat-form-field>
+        <div align="end">
+          <button type="submit" mat-raised-button color="primary">{{ service.addButton }}</button>
+          <button type="reset" (click)="service.resetForm()" mat-raised-button>CANCEL</button>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </form>
+  <br>
+
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="products">
+      <!-- Name Column -->
+      <ng-container matColumnDef='name'>
+        <th mat-header-cell *matHeaderCellDef> Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <!-- price Column -->
+      <ng-container matColumnDef='price'>
+        <th mat-header-cell *matHeaderCellDef> Price</th>
+        <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef='description'>
+        <th mat-header-cell *matHeaderCellDef> Description</th>
+        <td mat-cell *matCellDef="let element"> {{element.description}} </td>
+      </ng-container>
+
+      <!-- Position Column -->
+      <ng-container  matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action</th>
+        <td align="end" mat-cell *matCellDef="let element">
+          <button type="button" mat-raised-button color="primary" (click)="service.editProductList(element)">EDIT
+          </button>
+          <button type="button" mat-raised-button color="warn" (click)="service.deleteProduct(element.id)">DEL</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</div>
