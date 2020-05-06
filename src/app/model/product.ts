@@ -1,7 +1,8 @@
 export interface Product {
   id?: string;
+  ventaActiva: boolean;
+  tokens?: number;
   name: string;
-  description: string;
   price: number;
   owner: string;
 }

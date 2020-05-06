@@ -1,7 +1,18 @@
-<mat-card>
-  <img src="https://www.eho.eu/wp-content/uploads/2018/10/jabolko_novo.jpg" width="100"/>
-  <p>{{product.name}}</p>
-  <p>{{product.description}}</p>
-  <p>{{product.price | currency}}</p>
-  <button mat-raised-button color="primary" (click)="buyProduct()">Buy</button>
+<mat-card align="center">
+  <!--  <img src="https://www.eho.eu/wp-content/uploads/2018/10/jabolko_novo.jpg" width="100"/>-->
+  <mat-card-content>
+    <p><b>Owner:</b>  {{product.name}}</p>
+    <p><b>Tokens Available:</b> {{product.tokens}}</p>
+    <p><b>Price per Token:</b> {{product.price | currency}}</p>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <mat-slider
+      thumbLabel
+      [displayWith]="formatLabel"
+      tickInterval="1"
+      min="1"
+      max={{product.tokens}}
+      [(ngModel)]="value"></mat-slider>
+    <button mat-raised-button color="primary" (click)="buyToken()">Buy</button>
+  </mat-card-actions>
 </mat-card>

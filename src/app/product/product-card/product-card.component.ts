@@ -12,6 +12,7 @@ import {BuySellService} from '../../services/buy-sell.service';
 export class ProductCardComponent implements OnInit {
 
   @Input() product: Product;
+  value = 1;
 
   constructor(private service: ProductsService, private authService: AuthService, private buySellService: BuySellService) {
   }
@@ -19,28 +20,22 @@ export class ProductCardComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  buyProduct() {
+  buyToken() {
     if (this.authService.isLoggedIn()) {
-      this.buySellService.checkCredit('ifd3rodovqYyy0zm4MRw').subscribe((doc) => {
-          if (doc.exists) {
-            console.log('Document data:', doc.data());
-            if (doc.data().credit >= this.product.price) {
-              this.buySellService.updateCredit('ifd3rodovqYyy0zm4MRw', doc.data().credit - this.product.price);
-              // This is because I consider that there is just one product
-              this.service.deleteProduct(this.product.id);
-              alert('successful purchase');
-            } else {
-              alert('You do not have enough credit, your credit=' + doc.data().credit);
-            }
-          } else {
-            console.log('No such document!');
-          }
-        }
-      );
+      this.buySellService.updateCredit(this.authService.user.uid, this.value);
+      this.buySellService.updateCredit(this.product.owner, -this.value);
+      alert('Purchase Success ');
 
     } else {
       // Must be logged to buy
       alert('Must be logged to buy');
     }
+  }
+
+  formatLabel(value: number) {
+    if (this.product != null && value >= this.product.tokens) {
+      return Math.round(value);
+    }
+    return value;
   }
 }

@@ -3,14 +3,15 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {AngularFireList} from '@angular/fire/database';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Product} from '../model/product';
+import {combineLatest} from 'rxjs';
+import {AuthService} from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
 
-
-  constructor(private firebase: AngularFirestore) {
+  constructor(private firebase: AngularFirestore, private authService: AuthService) {
   }
 
   productList: AngularFireList<any>;
@@ -20,19 +21,20 @@ export class ProductsService {
     id: new FormControl(''),
     name: new FormControl('', Validators.required),
     price: new FormControl('', Validators.required),
-    description: new FormControl('', Validators.required),
-    owner: new FormControl('')
+    owner: new FormControl(''),
+    ventaActiva: new FormControl('')
   });
 
-
   getProductList() {
-    return this.firebase.collection('products').snapshotChanges();
+    const productObservable = this.firebase.collection('products').snapshotChanges();
+    const tokenObservable = this.firebase.collection('credit').snapshotChanges();
+    const userObservable = this.authService.useEventChange.asObservable();
+    return combineLatest(productObservable, tokenObservable, userObservable);
   }
-
-  insertProduct(products: Product) {
-    this.resetForm();
-    return this.firebase.collection('products').add(products);
-  }
+  //
+  // insertProduct(products: Product) {
+  //   return this.firebase.collection('products').add(products);
+  // }
 
   updateProduct(product: Product) {
     delete product.id;
@@ -47,6 +49,7 @@ export class ProductsService {
     this.form.patchValue(todo);
     this.addButton = 'UPDATE';
   }
+
   resetForm() {
     this.addButton = 'ADD';
     this.form.reset();
